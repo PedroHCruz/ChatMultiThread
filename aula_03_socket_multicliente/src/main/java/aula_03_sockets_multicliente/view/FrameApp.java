@@ -26,23 +26,27 @@ public class FrameApp extends javax.swing.JFrame {
     public FrameApp() {
         this.userControl = new UsuarioControl();
         initComponents();
-        login();
-        SegundoPlano();
-    }
-    
 
-    public void login(){
+        login();
+
+    }
+
+    public void login() {
         try {
-            usuario = new Cliente("10.90.37.112",15500);
+            usuario = new Cliente("10.90.37.112", 15500);
         } catch (Exception ex) {
             Logger.getLogger(FrameApp.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        JOptionPane.showInputDialog(this,"Informe seu nome");
-        
-        
-    }
 
+        String nome = JOptionPane.showInputDialog(this, "Informe seu nome");
+
+        if (listaUsuario.contains(nome)) {
+            System.out.println("c ja existe mané");
+        } else {
+            System.out.println("cpf novo");
+        }
+        SegundoPlano();
+    }
 
     public void SegundoPlano() {
 
@@ -55,7 +59,6 @@ public class FrameApp extends javax.swing.JFrame {
                     usuarios = (ArrayList) usuario.receber_mensagem();
                     listaUsuario.addAll(usuarios);
                     Lusuario.setModel(listaUsuario);
-                    
                     System.out.println(".");
                     Thread.sleep(1000);
                     listaUsuario.removeAllElements();
