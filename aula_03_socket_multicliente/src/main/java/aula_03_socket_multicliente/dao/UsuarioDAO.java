@@ -123,7 +123,7 @@ public class UsuarioDAO {
             while(resultadoBD.next()){
                 String mens = resultadoBD.getString("texto");
                 String remetente = resultadoBD.getString("remetente");
-                String result = mens.concat(" - " + remetente + " |");
+                String result = "REMETENTE:  " + remetente.concat(" - MENSAGEM:  " + mens + " - DESTINATARIO:  " + nome + " |");
                 if(mensagensALL.contains(result)){
                     
                 } else {

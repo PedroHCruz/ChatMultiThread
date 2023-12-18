@@ -50,13 +50,39 @@ public class TrataCliente implements Runnable {
             do {
 
                 request = (String) receber_mensagem();
+                if(request.equals("banco")){
                 System.out.println(request);
                 
                     System.out.println("enviar banco");
                     
                     
                     enviar_mensagem(usuarioControl.ListaUsuario());
+                }
+                
+                if(request.equals("conectar")){
+                    System.out.println("conectar usuario");
+                    enviar_mensagem("informe o nome");
+                    String nome = (String) receber_mensagem();
+                    usuarioControl.CadastraUsuario(nome);
+                    enviar_mensagem("conectado");
+                }
               
+                if(request.equals("desconectar")){
+                    System.out.println("Desconectar usuario");
+                    enviar_mensagem("desconectar usuario");
+                    String nome = (String) receber_mensagem();
+                    usuarioControl.DesconectaUsuario(nome);
+                    enviar_mensagem("desconectado");
+                }
+                
+                if(request.equals("listaMensagemPrivado")){
+                    ArrayList<String> mensagens = new ArrayList<>();
+                    System.out.println("ListaMensagemPrivada");
+                    enviar_mensagem("Listar Mensagem");
+                    String nomeDest = (String) receber_mensagem();
+                    mensagens = usuarioControl.ListaMSGUser(nomeDest);
+                    enviar_mensagem(mensagens);
+                }
 
             } while (!request.equals("F"));
         
